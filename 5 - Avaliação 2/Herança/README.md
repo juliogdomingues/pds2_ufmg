@@ -1,0 +1,13 @@
+Introdução
+
+Os serviços de correio expresso, como FedEx, DHLe UPS, oferecem várias opções  de entrega, cada qual com custos específicos. Crie uma hierarquia de herança para representar vários tipos de paco-tes.
+
+Descrição
+
+Utilize Package como a classe básica da hierarquia, então inclua as classes TwoDayPackage e OvernightPackage que derivam de Package. A classe básica Package deve incluir membros de dados que representam nome e endereço. Para simplificar nosso código, represente o endereço como uma ́única string. Além dos membros de citados anteriormente, armazene dados que armazenam o peso (em quilos) e o custo por quilo para a entrega do pacote. O construtor Package deve inicializar todos os membros de dados, em outras palavras, todos são argumentos do construtor. Assegure que o peso e o custo por quilo contenham valores positivos (faça uso de unsigned int). Package deve fornecer um método public calculate_cost que retorna um double indicando o custo associado com a entrega do pacote. A função calculate_cost de Package deve determinar o custo multiplicando o peso pelo custo(em quilos). 
+
+A classe derivada TwoDayPackage deve herdar a funcionalidade da classe básica Package, mas também incluir um membro de dados que representa uma taxa fixa que a empresa de entrega cobra pelo serviço de entrega em dois dias. O construtor TwoDayPackage deve receber um valor para inicializar esse membro de dados. TwoDayPackage deve redefinir o método calculate_cost para que ele calcule o custo de entrega adicionando a taxa fixa ao custo baseado em peso calculado pela função calculate_cost da super classe Package. 
+
+A classe OvernightPackage deve herdar diretamente da classe Package e conter um membro de dados adicional para representar uma taxa adicional por quilo cobrado pelo serviço de entrega noturno. OvernightPackage deve redefinir o método calculate_cost para que ela acrescente a taxa adicional por quilo ao custo-padrão por quilo antes de calcular o custo da entrega.
+
+Crie também uma classe DestinationPackages que armazena para cada destinatário os seus Packages. A classe deve conter um map de vectors (std::map<string, vector<Package*> >) que armazena um vetor do tipo mais abstrato Package no valor, indexando pelo nome do destinatário na chave. Note que o vetor é de ponteiros para fazer uso de polimorfismo. Sua classe deve ter um método void add_package(Package g) que guarda um novo pacote no mapa. A mesma, também deve ter dois métodos com o mesmo nome double custo_total() que realiza um loop para processar o Packages polimorficamente. A primeira variação double custo_total() computa o custo de todos os usuários, enquanto a segunda double custo_total(string) computa os custos de um único usuário.
